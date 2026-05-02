@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-syne: 'Syne', sans-serif;
+  --font-dm: 'DM Sans', sans-serif;
+  --blue: #63b3ed;
+  --teal: #4fd1c5;
+  --amber: #f6ad55;
+  --bg: #07090f;
+  --bg2: #0d1117;
+  --card: #111827;
+  --border: rgba(99,179,237,0.12);
+  --muted: #718096;
+  --text: #e2e8f0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm);
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+
+/* Gradient text */
+.grad-text {
+  background: linear-gradient(135deg, #63b3ed, #4fd1c5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-bg { background: linear-gradient(135deg, #63b3ed, #4fd1c5); }
+.grad-amber { background: linear-gradient(135deg, #f6ad55, #ed8936); }
+
+/* Animated background mesh */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.06;
+  animation: meshMove 10s ease-in-out infinite alternate;
+}
+.mesh-orb:nth-child(1) {
+  width: 600px; height: 600px;
+  background: #63b3ed;
+  top: -200px; left: -100px;
+  animation-duration: 12s;
+}
+.mesh-orb:nth-child(2) {
+  width: 500px; height: 500px;
+  background: #4fd1c5;
+  bottom: -150px; right: -100px;
+  animation-duration: 15s;
+  animation-delay: -5s;
+}
+.mesh-orb:nth-child(3) {
+  width: 400px; height: 400px;
+  background: #f6ad55;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-duration: 18s;
+  animation-delay: -8s;
+  opacity: 0.03;
+}
+@keyframes meshMove {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 30px) scale(1.1); }
+}
+
+/* Section spacing */
+.section-pad { padding: 6rem 0; }
+
+/* Fade up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
